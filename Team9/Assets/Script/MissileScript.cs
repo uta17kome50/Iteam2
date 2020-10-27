@@ -70,7 +70,7 @@ public class MissileScript : MonoBehaviour
         transform.rotation = q;
     }
     */
-    void OnCollision2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Stage"))
         {

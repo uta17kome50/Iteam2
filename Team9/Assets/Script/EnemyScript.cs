@@ -182,7 +182,7 @@ public class EnemyScript : MonoBehaviour
         return Direction;
     }
 
-    void OnCollision2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("PlayerAttack"))
         {

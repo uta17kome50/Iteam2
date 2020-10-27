@@ -308,7 +308,7 @@ PrefabInstance:
     - target: {fileID: 8435418605488276090, guid: 3e75e09fc6422104781e5cfbaaf096ab,
         type: 3}
       propertyPath: EnemyName
-      value: Laser
+      value: Missile
       objectReference: {fileID: 0}
     - target: {fileID: 8435418605488276090, guid: 3e75e09fc6422104781e5cfbaaf096ab,
         type: 3}
