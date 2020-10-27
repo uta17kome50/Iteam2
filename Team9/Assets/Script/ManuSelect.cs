@@ -20,7 +20,8 @@ public class ManuSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+      
     }
     void OnEnable()
     {
@@ -70,6 +71,7 @@ public class ManuSelect : MonoBehaviour
         Time.timeScale = 1f;
         PauseManu.pausing = false;
         GameManagerScene.isTitle = true;
+
         Exit.gameObject.SetActive(false);
         Title.gameObject.SetActive(false);
         ReStart.gameObject.SetActive(false);
