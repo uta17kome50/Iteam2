@@ -18,7 +18,7 @@ public class End : MonoBehaviour
 
     void Scene()
     {
-        if (Input.GetKeyDown("k"))
+        if (Input.GetKeyDown("joystick button 7"))
         {
             FadeManager.FadeOut("Title");
         }

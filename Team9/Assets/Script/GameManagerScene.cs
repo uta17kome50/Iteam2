@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScene : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class GameManagerScene : MonoBehaviour
     void Start()
     {
         FadeManager.FadeIn();
+        
     }
 
     // Update is called once per frame
@@ -35,7 +38,8 @@ public class GameManagerScene : MonoBehaviour
     {
         if(isReTurn)
         {
-            FadeManager.FadeOut("koyama");
+            Scene loadScene = SceneManager.GetActiveScene();
+            FadeManager.FadeOut(loadScene.name);
             isReTurn = false;
         }
     }

@@ -23,9 +23,9 @@ public class Title : MonoBehaviour
 
     void Scene()
     {
-        if(Input.GetKeyDown("k"))
+        if(Input.GetKeyDown("joystick button 7"))
         {
-            FadeManager.FadeOut("koyama");
+            FadeManager.FadeOut("MasterScene");
         }
     }
 }
