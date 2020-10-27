@@ -13,13 +13,13 @@ public class RotationEnemyScript : MonoBehaviour
     public GameObject MissileObj;
 
     Rigidbody2D rb;
-    public GameObject Player;
+    GameObject player;
 
     SpriteRenderer MainSpriteRenderer;
     public string EnemyName;
     public string Direction;
     public bool IsMovePlayer;
-    public int CountLaser;
+    //public int CountLaser;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,8 @@ public class RotationEnemyScript : MonoBehaviour
         IsMovePlayer = false;
         MainSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
+
         if (EnemyName == "Laser")
         {
             MainSpriteRenderer.sprite = LezarEnemy;
@@ -64,18 +66,13 @@ public class RotationEnemyScript : MonoBehaviour
             switch (Direction)
             {
                 case "Right":
-                    if (rb.transform.position.x < Player.transform.position.x &&
-                        rb.transform.position.y == Player.transform.position.y)
+                    if (rb.transform.position.x < player.transform.position.x &&
+                        rb.transform.position.y == player.transform.position.y)
                     {
                         if (EnemyName == "Laser")
                         {
-                            if (CountLaser == 3)
-                            {
                                 var obj = Instantiate(LezarObj, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
                                 obj.transform.right = transform.right;
-                                CountLaser = 0;
-                            }
-                            CountLaser++;
                         }
                         if (EnemyName == "Missile")
                         {
@@ -86,18 +83,13 @@ public class RotationEnemyScript : MonoBehaviour
                     }
                     break;
                 case "Down":
-                    if (rb.transform.position.x == Player.transform.position.x &&
-                        rb.transform.position.y > Player.transform.position.y)
+                    if (rb.transform.position.x == player.transform.position.x &&
+                        rb.transform.position.y > player.transform.position.y)
                     {
                         if (EnemyName == "Laser")
-                        {
-                            if (CountLaser == 3)
-                            {
+                        {       
                                 var obj = Instantiate(LezarObj, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
                                 obj.transform.right = transform.right;
-                                CountLaser = 0;
-                            }
-                            CountLaser++;
                         }
                         if (EnemyName == "Missile")
                         {
@@ -107,18 +99,13 @@ public class RotationEnemyScript : MonoBehaviour
                     }
                     break;
                 case "Left":
-                    if (rb.transform.position.x > Player.transform.position.x &&
-                        rb.transform.position.y == Player.transform.position.y)
+                    if (rb.transform.position.x > player.transform.position.x &&
+                        rb.transform.position.y == player.transform.position.y)
                     {
                         if (EnemyName == "Laser")
                         {
-                            if (CountLaser == 3)
-                            {
                                 var obj = Instantiate(LezarObj, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
                                 obj.transform.right = transform.right;
-                                CountLaser = 0;
-                            }
-                            CountLaser++;
                         }
                         if (EnemyName == "Missile")
                         {
@@ -129,18 +116,13 @@ public class RotationEnemyScript : MonoBehaviour
                     }
                     break;
                 case "Up":
-                    if (rb.transform.position.x == Player.transform.position.x &&
-                        rb.transform.position.y < Player.transform.position.y)
+                    if (rb.transform.position.x == player.transform.position.x &&
+                        rb.transform.position.y < player.transform.position.y)
                     {
                         if (EnemyName == "Laser")
                         {
-                            if (CountLaser == 3)
-                            {
                                 var obj = Instantiate(LezarObj, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
                                 obj.transform.right = transform.right;
-                                CountLaser = 0;
-                            }
-                            CountLaser++;
                         }
                         if (EnemyName == "Missile")
                         {
