@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7443842616144030399}
   m_Layer: 0
   m_Name: Missile
-  m_TagString: Untagged
+  m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,8 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa2540f07612be439ee75d251a36333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 5917035133710699911, guid: 3e75e09fc6422104781e5cfbaaf096ab, type: 3}
-  Direction: 
+  IsMovePlayer: 0
 --- !u!50 &7633132751107019139
 Rigidbody2D:
   serializedVersion: 4
@@ -118,7 +117,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &7443842616144030399
 BoxCollider2D:
   m_ObjectHideFlags: 0

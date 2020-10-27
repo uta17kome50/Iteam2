@@ -3,34 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MissileScript : MonoBehaviour
-{
-    [SerializeField]
-    GameObject enemy;
-    EnemyScript enemyScript;
-    Rigidbody2D rb;
-
-    public string Direction;
-    string Type;
-
+{ 
     public bool IsMovePlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        enemy = GameObject.Find("Enemy");
-        enemyScript = enemy.GetComponent<EnemyScript>();
-        Direction = enemyScript.RetrunDirection();
-        Type = "Missile";
         IsMovePlayer = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ChangeSprite();
         if (IsMovePlayer == true)
         {
+            transform.position += transform.right * 2.0f;
+            /*
             if (Direction == "Right")
             {
                 rb.transform.position += new Vector3(1.0f, 0.0f, 0.0f);
@@ -47,10 +35,11 @@ public class MissileScript : MonoBehaviour
             {
                 rb.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
             }
+            */
         }
         IsMovePlayer = false;
     }
-
+    /*
     void ChangeSprite()
     {
         Quaternion q = transform.rotation;
@@ -80,7 +69,7 @@ public class MissileScript : MonoBehaviour
         }
         transform.rotation = q;
     }
-
+    */
     void OnCollision2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Stage"))
@@ -92,15 +81,5 @@ public class MissileScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    public string ReturnData()
-    {
-        return Direction;
-    }
-
-    public string RetrunType()
-    {
-        return Type;
     }
 }
