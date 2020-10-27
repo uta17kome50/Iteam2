@@ -11,8 +11,8 @@ public class EnemyScript : MonoBehaviour
 
     Rigidbody2D rb;
 
-    public GameObject LezarObj;
-    public GameObject MissileObj;
+    public LaserScript LezarPrefab;
+    public MissileScript MissilePrefab;
 
     public GameObject Player;
 
@@ -21,6 +21,8 @@ public class EnemyScript : MonoBehaviour
     public string Direction;
     public bool IsMovePlayer;
     public int CountLaser;
+
+    private MissileScript activeMissile;
 
     // Start is called before the first frame update
     void Start()
@@ -54,16 +56,20 @@ public class EnemyScript : MonoBehaviour
                     {
                         if (EnemyName == "Laser")
                         {
-                            Instantiate(LezarObj, transform.position + new Vector3(2.0f, 0.0f, 0.0f), Quaternion.identity);
-                        }
-                        if (EnemyName == "Missile")
-                        {
                             if (CountLaser == 3)
                             {
-                                Instantiate(MissileObj, transform.position + new Vector3(2.0f, 0.0f, 0.0f), Quaternion.identity);
+                                var obj = Instantiate(LezarPrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
+                                obj.transform.right = transform.right;
                                 CountLaser = 0;
                             }
                             CountLaser++;
+                        }
+                        if (EnemyName == "Missile")
+                        {
+                            if (activeMissile != null) break;
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(2.0f, 0.0f, 0.0f), Quaternion.identity);
+                            obj.transform.right = transform.right;
+                            activeMissile = obj.GetComponent<MissileScript>();
                         }
                     }
                     break;
@@ -73,16 +79,20 @@ public class EnemyScript : MonoBehaviour
                     {
                         if (EnemyName == "Laser")
                         {
-                            Instantiate(LezarObj, transform.position + new Vector3(0.0f, -2.0f, 0.0f), Quaternion.identity);
-                        }
-                        if (EnemyName == "Missile")
-                        {
                             if (CountLaser == 3)
                             {
-                                Instantiate(MissileObj, transform.position + new Vector3(0.0f, -2.0f, 0.0f), Quaternion.identity);
+                                var obj = Instantiate(LezarPrefab, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
+                                obj.transform.right = transform.right;
                                 CountLaser = 0;
                             }
                             CountLaser++;
+                        }
+                        if (EnemyName == "Missile")
+                        {
+                            if (activeMissile != null) break;
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, -2.0f, 0.0f), Quaternion.identity);
+                            obj.transform.right = transform.right;
+                            activeMissile = obj.GetComponent<MissileScript>();
                         }
                     }
                     break;
@@ -92,35 +102,43 @@ public class EnemyScript : MonoBehaviour
                     {
                         if (EnemyName == "Laser")
                         {
-                            Instantiate(LezarObj, transform.position + new Vector3(-2.0f, 0.0f, 0.0f), Quaternion.identity);
-                        }
-                        if (EnemyName == "Missile")
-                        {
                             if (CountLaser == 3)
                             {
-                                Instantiate(MissileObj, transform.position + new Vector3(-2.0f, 0.0f, 0.0f), Quaternion.identity);
+                                var obj = Instantiate(LezarPrefab, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
+                                obj.transform.right = transform.right;
                                 CountLaser = 0;
                             }
                             CountLaser++;
                         }
+                        if (EnemyName == "Missile")
+                        {
+                            if (activeMissile != null) break;
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(-2.0f, 0.0f, 0.0f), Quaternion.identity);
+                            obj.transform.right = transform.right;
+                            activeMissile = obj.GetComponent<MissileScript>();
+                        }
                     }
                     break;
-                case "Top":
+                case "Up":
                     if (rb.transform.position.x == Player.transform.position.x &&
                         rb.transform.position.y < Player.transform.position.y)
                     {
                         if (EnemyName == "Laser")
                         {
-                            Instantiate(LezarObj, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
-                        }
-                        if (EnemyName == "Missile")
-                        {
                             if (CountLaser == 3)
                             {
-                                Instantiate(MissileObj, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+                                var obj = Instantiate(LezarPrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
+                                obj.transform.right = transform.right;
                                 CountLaser = 0;
                             }
                             CountLaser++;
+                        }
+                        if (EnemyName == "Missile")
+                        {
+                            if (activeMissile != null) break;
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+                            obj.transform.right = transform.right;
+                            activeMissile = obj.GetComponent<MissileScript>();
                         }
                     }
                     break;
@@ -150,7 +168,7 @@ public class EnemyScript : MonoBehaviour
             //rb.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 180.0f, transform.rotation.w);
             q = Quaternion.Euler(0f, 0f, 180f);
         }
-        if (Direction == "Top")
+        if (Direction == "Up")
         {
             //mainSpriteRender.sprite = defZombie_r;
             //rb.transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, 270.0f, transform.rotation.w);
@@ -164,7 +182,7 @@ public class EnemyScript : MonoBehaviour
         return Direction;
     }
 
-    void OnCollision2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("PlayerAttack"))
         {
