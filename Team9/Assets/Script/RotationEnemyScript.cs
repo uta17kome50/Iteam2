@@ -5,12 +5,12 @@ using UnityEngine;
 public class RotationEnemyScript : MonoBehaviour
 {
     [SerializeField]
-    Sprite LezarEnemy;
+    Sprite LaserEnemy;
     [SerializeField]
     Sprite MissileEnemy;
 
-    public GameObject LezarObj;
-    public GameObject MissileObj;
+    public LaserScript LaserPrefab;
+    public MissileScript MissilePrefab;
 
     Rigidbody2D rb;
     GameObject player;
@@ -32,7 +32,7 @@ public class RotationEnemyScript : MonoBehaviour
 
         if (EnemyName == "Laser")
         {
-            MainSpriteRenderer.sprite = LezarEnemy;
+            MainSpriteRenderer.sprite = LaserEnemy;
         }
         if (EnemyName == "Missile")
         {
@@ -71,13 +71,13 @@ public class RotationEnemyScript : MonoBehaviour
                     {
                         if (EnemyName == "Laser")
                         {
-                                var obj = Instantiate(LezarObj, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
+                                var obj = Instantiate(LaserPrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
                                 obj.transform.right = transform.right;
                         }
                         if (EnemyName == "Missile")
                         {
 
-                            var obj = Instantiate(MissileObj, transform.position + new Vector3(2.0f, 0.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(2.0f, 0.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                         }
                     }
@@ -88,12 +88,12 @@ public class RotationEnemyScript : MonoBehaviour
                     {
                         if (EnemyName == "Laser")
                         {       
-                                var obj = Instantiate(LezarObj, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
+                                var obj = Instantiate(LaserPrefab, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
                                 obj.transform.right = transform.right;
                         }
                         if (EnemyName == "Missile")
                         {
-                            var obj = Instantiate(MissileObj, transform.position + new Vector3(0.0f, -2.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, -2.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                         }
                     }
@@ -104,13 +104,13 @@ public class RotationEnemyScript : MonoBehaviour
                     {
                         if (EnemyName == "Laser")
                         {
-                                var obj = Instantiate(LezarObj, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
+                                var obj = Instantiate(LaserPrefab, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
                                 obj.transform.right = transform.right;
                         }
                         if (EnemyName == "Missile")
                         {
 
-                            var obj = Instantiate(MissileObj, transform.position + new Vector3(-2.0f, 0.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(-2.0f, 0.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                         }
                     }
@@ -121,12 +121,12 @@ public class RotationEnemyScript : MonoBehaviour
                     {
                         if (EnemyName == "Laser")
                         {
-                                var obj = Instantiate(LezarObj, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
+                                var obj = Instantiate(LaserPrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
                                 obj.transform.right = transform.right;
                         }
                         if (EnemyName == "Missile")
                         {
-                            var obj = Instantiate(MissileObj, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                         }
                     }

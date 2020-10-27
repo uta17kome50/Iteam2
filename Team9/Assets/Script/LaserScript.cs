@@ -15,6 +15,7 @@ public class LaserScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //右方向に移動
         transform.position += transform.right * laserSpeed * Time.deltaTime;
         /*
         var velocity = rb.velocity;
