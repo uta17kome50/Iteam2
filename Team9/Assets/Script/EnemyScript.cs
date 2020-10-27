@@ -39,15 +39,14 @@ public class EnemyScript : MonoBehaviour
         {
             MainSpriteRenderer.sprite = MissileEnemy;
         }
+        ChangeRotation();
     }
 
     // Update is called once per frame
-    void Update()
+    public void MoveEnemy()
     {
-        ChangeRotation();
-        if (IsMovePlayer == true)
-        {
-            //敵の向きによって撃つ方向を変える
+        
+        //敵の向きによって撃つ方向を変える
             switch (Direction)
             {
                 case "Right":
@@ -55,7 +54,7 @@ public class EnemyScript : MonoBehaviour
                     {
                         if (CountLaser == 3)
                         {
-                            var obj = Instantiate(LaserPrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(LaserPrefab, transform.position + new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                             CountLaser = 0;
                         }
@@ -64,7 +63,7 @@ public class EnemyScript : MonoBehaviour
                     if (EnemyName == "Missile")
                     {
                         if (activeMissile != null) break;
-                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(2.0f, 0.0f, 0.0f), Quaternion.identity);
+                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
                         obj.transform.right = transform.right;
                         activeMissile = obj.GetComponent<MissileScript>();
                     }
@@ -83,7 +82,7 @@ public class EnemyScript : MonoBehaviour
                     if (EnemyName == "Missile")
                     {
                         if (activeMissile != null) break;
-                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, -2.0f, 0.0f), Quaternion.identity);
+                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
                         obj.transform.right = transform.right;
                         activeMissile = obj.GetComponent<MissileScript>();
                     }
@@ -102,7 +101,7 @@ public class EnemyScript : MonoBehaviour
                     if (EnemyName == "Missile")
                     {
                         if (activeMissile != null) break;
-                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(-2.0f, 0.0f, 0.0f), Quaternion.identity);
+                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
                         obj.transform.right = transform.right;
                         activeMissile = obj.GetComponent<MissileScript>();
                     }
@@ -121,14 +120,13 @@ public class EnemyScript : MonoBehaviour
                     if (EnemyName == "Missile")
                     {
                         if (activeMissile != null) break;
-                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
                         obj.transform.right = transform.right;
                         activeMissile = obj.GetComponent<MissileScript>();
                     }
                     break;
             }
-            IsMovePlayer = false;
-        }
+            
     }
 
     void ChangeRotation()

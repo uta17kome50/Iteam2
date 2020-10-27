@@ -56,11 +56,11 @@ public class MapClieit : MonoBehaviour
                     wall.transform.position = new Vector2(i, j);
 
                 }
-                //if (map[i, j] == 2)
-                //{
-                //    GameObject go = Instantiate(playerPrefab);
-                //    go.transform.position = new Vector2(i, j);
-                //}
+                if (map[i, j] == 2)
+                {
+                    GameObject go = Instantiate(playerPrefab);
+                    go.transform.position = new Vector2(i, j);
+                }
                 //if(map[i,j] == 3)
                 //{
                 //    GameObject go = Instantiate(Enemy);

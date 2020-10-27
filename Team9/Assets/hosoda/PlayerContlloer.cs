@@ -103,51 +103,67 @@ public class PlayerContlloer : MonoBehaviour
     // ③ 目的地へ移動する
     void Move()
     {
-        var velocity = rb.velocity;
-        velocity.x = 0;
-        velocity.y = 0;
-        //GameManager = GameObject.FindGameObjectWithTag("GameManager");
-        //PlayerState = GameManager.GetComponent<Gamemanager1>().CurrentGameState;
+        GameManager = GameObject.FindGameObjectWithTag("GameManager");
+        PlayerState = GameManager.GetComponent<Gamemanager>().CurrentGameState;
         //Debug.Log(PlayerState);
-        //if (PlayerState == GameState.KeyInput)
-        //{
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
-        {
-            velocity.x = speed;
-            //velocity.y = 0;
-            //GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
-            //UpdatePlayerPossision(velocity.x, velocity.y);
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
-        {
-            velocity.x = -speed;
-            //velocity.y = 0;
-            //GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
-            //UpdatePlayerPossision(velocity.x, velocity.y);
-        }
-        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("Vertical") > 0)
-        {
-            //velocity.x = 0;
-            velocity.y = speed;
-            //GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
-            // UpdatePlayerPossision(velocity.x, velocity.y);
-        }
-        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("Vertical") < 0)
-        {
-            //velocity.x = 0;
-            velocity.y = -speed;
-            //GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
-            // UpdatePlayerPossision(velocity.x, velocity.y);
-        }
-        // }
 
-        rb.velocity = velocity;
+        if (PlayerState == GameState.KeyInput)
+        {
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
+            {
+                if (transform.position.x != 6)
+                {
+                    transform.position += transform.right * 1.0f;
+                    GameManager.GetComponent<Gamemanager>().SetCurrentState(GameState.PlayerTurn);
+                    //UpdatePlayerPossision(velocity.x, velocity.y);
+                }
+
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
+            {
+                if (transform.position.x != 1)
+                {
+                    transform.position += transform.right * -1.0f;
+                    GameManager.GetComponent<Gamemanager>().SetCurrentState(GameState.PlayerTurn);
+                    //UpdatePlayerPossision(velocity.x, velocity.y);
+                }
+
+            }
+            else if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("Vertical") > 0)
+            {
+                if (transform.position.y != 6)
+                {
+                    transform.position += transform.up * 1.0f;
+                    GameManager.GetComponent<Gamemanager>().SetCurrentState(GameState.PlayerTurn);
+                    // UpdatePlayerPossision(velocity.x, velocity.y);
+                }
+
+            }
+            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("Vertical") < 0)
+            {
+                if (transform.position.y != 1)
+                {
+                    transform.position += transform.up * -1.0f;
+                    GameManager.GetComponent<Gamemanager>().SetCurrentState(GameState.PlayerTurn);
+                    // UpdatePlayerPossision(velocity.x, velocity.y);
+                }
+
+            }
+
+
+        }
+
+        // rb.velocity = velocity;
         //transform.position = Vector3.MoveTowards(transform.position, target, step * Time.deltaTime);
     }
     //攻撃
     void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown("joystick button 1"))
+        GameManager = GameObject.FindGameObjectWithTag("GameManager");
+        PlayerState = GameManager.GetComponent<Gamemanager>().CurrentGameState;
+        if (PlayerState == GameState.KeyInput)
+
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown("joystick button 1"))
         {
             if (balletList.Count <= 0)
             {
@@ -169,10 +185,13 @@ public class PlayerContlloer : MonoBehaviour
                     break;
             }
 
-            var obj = Instantiate(prefab, transform.position + dir * 2.0f, Quaternion.identity);
+            var obj = Instantiate(prefab, transform.position + dir * 1.0f, Quaternion.identity);
             obj.transform.right = dir;
+                obj.tag = "PlayerAttack";
             activeWeapon = obj.gameObject;
-        }
+                GameManager.GetComponent<Gamemanager>().SetCurrentState(GameState.PlayerTurn);
+
+            }
     }
     //死亡
     void Death()
@@ -266,6 +285,10 @@ public class PlayerContlloer : MonoBehaviour
     //弾と衝突時
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("Enemy")|| other.gameObject.CompareTag("REnemy"))
+        {
+            Destroy(gameObject);
+        }
         if (other.gameObject == activeWeapon) return;
         Debug.Log("hit");
         switch (other.gameObject.tag)
