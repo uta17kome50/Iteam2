@@ -12,6 +12,7 @@ public enum GameState
     PlayerTurn,//プレイヤーの行動中
     EnemyBegin,//エネミーターンの開始
     EnemyTurn,//エネミーの行動中
+    WeaponTurn,
     TurnEnd,//ターン終了→KeyInputへ変遷
 }
 
@@ -20,6 +21,7 @@ public class Gamemanager : MonoBehaviour
     
     public static Gamemanager instance;
     public GameObject[] EnemyObj; //エネミーにアタッチしている関数を使うためのハコ
+    public GameObject[] WeaponObj;
     public GameState CurrentGameState; //現在のゲーム状態
     float TurnDelay = 0.20f; //移動ごとの間隔
 
@@ -72,6 +74,9 @@ public class Gamemanager : MonoBehaviour
             case GameState.EnemyTurn:
                 StartCoroutine("EnemyTurn");
                 break;
+            case GameState.WeaponTurn:
+                StartCoroutine("WeaponTurn");
+                break;
 
             case GameState.TurnEnd:
                 SetCurrentState(GameState.KeyInput);
@@ -98,9 +103,24 @@ public class Gamemanager : MonoBehaviour
         //    yield return new WaitForSeconds(TurnDelay);
         //    EnemyObj[x].GetComponent<Enemy>().MoveEnemy();
         //}
+       
+        SetCurrentState(GameState.WeaponTurn);
+    }
+
+    IEnumerator WeaponTurn()
+    {
+        yield return new WaitForSeconds(TurnDelay);
+        //GameObject[] WeaponObj = GameObject.FindGameObjectsWithTag("Laser");
+
+        //EnemyObjの数だけEnemyにアタッチしている移動処理を実行
+        //for (int x = 0; x < WeaponObj.Length; ++x)
+        //{
+        //    yield return new WaitForSeconds(TurnDelay);
+        //    EnemyObj[x].GetComponent<Enemy>().Acttion();
+        //}
         turn--;
         SetCurrentState(GameState.TurnEnd);
     }
-   
-    
+
+
 }
