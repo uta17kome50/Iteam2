@@ -821,20 +821,9 @@ PrefabInstance:
       objectReference: {fileID: 921610883}
     - target: {fileID: 8435418605488276090, guid: 3e75e09fc6422104781e5cfbaaf096ab,
         type: 3}
-      propertyPath: IsMovePlayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8435418605488276090, guid: 3e75e09fc6422104781e5cfbaaf096ab,
-        type: 3}
       propertyPath: LezarPrefab
       value: 
       objectReference: {fileID: 384461889459516494, guid: 2ad07abe24d39a3409392cb7a22fe988,
-        type: 3}
-    - target: {fileID: 8435418605488276090, guid: 3e75e09fc6422104781e5cfbaaf096ab,
-        type: 3}
-      propertyPath: MissilePrefab
-      value: 
-      objectReference: {fileID: 7369055478494660993, guid: 2b7236666b27f3c439b68e8d1b703f61,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e75e09fc6422104781e5cfbaaf096ab, type: 3}

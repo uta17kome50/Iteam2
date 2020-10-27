@@ -5,18 +5,18 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     [SerializeField]
-    Sprite LezarEnemy;
+    Sprite LaserEnemy; //レーザーを撃つ敵の画像
     [SerializeField]
-    Sprite MissileEnemy;
+    Sprite MissileEnemy;　//ミサイルを撃つ的の画像
 
     Rigidbody2D rb;
 
-    public LaserScript LezarPrefab;
-    public MissileScript MissilePrefab;
-
+    public LaserScript LaserPrefab;　//レーザーのプレハブ
+    public MissileScript MissilePrefab;　//ミサイルのプレハブ
+    
     //GameObject Player;
 
-    SpriteRenderer MainSpriteRenderer;
+    SpriteRenderer MainSpriteRenderer; 
     public string EnemyName;
     public string Direction;
     public bool IsMovePlayer;
@@ -30,9 +30,10 @@ public class EnemyScript : MonoBehaviour
         MainSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         IsMovePlayer = false;
+        //敵の種類を判定
         if (EnemyName == "Laser")
         {
-            MainSpriteRenderer.sprite = LezarEnemy;
+            MainSpriteRenderer.sprite = LaserEnemy;
         }
         if (EnemyName == "Missile")
         {
@@ -43,9 +44,10 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ChangeSprite();
+        ChangeRotation();
         if (IsMovePlayer == true)
         {
+            //敵の向きによって撃つ方向を変える
             switch (Direction)
             {
                 case "Right":
@@ -53,7 +55,7 @@ public class EnemyScript : MonoBehaviour
                     {
                         if (CountLaser == 3)
                         {
-                            var obj = Instantiate(LezarPrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(LaserPrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                             CountLaser = 0;
                         }
@@ -72,7 +74,7 @@ public class EnemyScript : MonoBehaviour
                     {
                         if (CountLaser == 3)
                         {
-                            var obj = Instantiate(LezarPrefab, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(LaserPrefab, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                             CountLaser = 0;
                         }
@@ -91,7 +93,7 @@ public class EnemyScript : MonoBehaviour
                     {
                         if (CountLaser == 3)
                         {
-                            var obj = Instantiate(LezarPrefab, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(LaserPrefab, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                             CountLaser = 0;
                         }
@@ -110,7 +112,7 @@ public class EnemyScript : MonoBehaviour
                     {
                         if (CountLaser == 3)
                         {
-                            var obj = Instantiate(LezarPrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(LaserPrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                             CountLaser = 0;
                         }
@@ -129,8 +131,9 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    void ChangeSprite()
+    void ChangeRotation()
     {
+        //敵の向きによって回転する
         Quaternion q = transform.rotation;
         if (Direction == "Right")
         {

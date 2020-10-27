@@ -17,6 +17,7 @@ public class MissileScript : MonoBehaviour
     {
         if (IsMovePlayer == true)
         {
+            //右方向に移動
             transform.position += transform.right * 2.0f;
             /*
             if (Direction == "Right")
