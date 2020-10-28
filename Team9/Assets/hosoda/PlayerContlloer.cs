@@ -200,6 +200,7 @@ public class PlayerContlloer : MonoBehaviour
         if (balletList.Count > 3)
         {
             Destroy(this.gameObject);
+            FadeManager.FadeOut("End");
         }
     }
     private Vector3 GetDirection(string dir)
