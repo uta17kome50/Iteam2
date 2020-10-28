@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class RotationEnemyScript : MonoBehaviour
@@ -13,7 +14,7 @@ public class RotationEnemyScript : MonoBehaviour
     public MissileScript MissilePrefab;
 
     Rigidbody2D rb;
-    GameObject player;
+    public GameObject player;
 
     SpriteRenderer MainSpriteRenderer;
     public string EnemyName;
@@ -28,7 +29,8 @@ public class RotationEnemyScript : MonoBehaviour
         IsMovePlayer = false;
         MainSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player");
+        
+        
 
         if (EnemyName == "Laser")
         {
@@ -41,11 +43,11 @@ public class RotationEnemyScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void MoveEnemy()
     {
-        if (IsMovePlayer == true)
-        {
-            if (Direction == "Right")
+
+        player = GameObject.Find("Player(Clone)");
+        if (Direction == "Right")
             {
                 Direction = "Down";
             }
@@ -77,7 +79,7 @@ public class RotationEnemyScript : MonoBehaviour
                         if (EnemyName == "Missile")
                         {
 
-                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(2.0f, 0.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                         }
                     }
@@ -93,7 +95,7 @@ public class RotationEnemyScript : MonoBehaviour
                         }
                         if (EnemyName == "Missile")
                         {
-                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, -2.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                         }
                     }
@@ -110,7 +112,7 @@ public class RotationEnemyScript : MonoBehaviour
                         if (EnemyName == "Missile")
                         {
 
-                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(-2.0f, 0.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                         }
                     }
@@ -126,14 +128,13 @@ public class RotationEnemyScript : MonoBehaviour
                         }
                         if (EnemyName == "Missile")
                         {
-                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, 2.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                         }
                     }
                     break;
             }
-        }
-        IsMovePlayer = false;
+        
     }
 
     void ChangeSprite()
@@ -169,10 +170,13 @@ public class RotationEnemyScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("PlayerAttack"))
+        if (other.gameObject.CompareTag("Missile"))
         {
             Destroy(gameObject);
         }
-
+        if (other.gameObject.CompareTag("Laser"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

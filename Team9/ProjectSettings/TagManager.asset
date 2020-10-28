@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Stage
+  - Laser
+  - Missile
+  - Enemy
+  - GameManager
+  - REnemy
+  - PlayerAttack
+  - goal
   layers:
   - Default
   - TransparentFX
