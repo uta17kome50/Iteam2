@@ -5,40 +5,50 @@ using UnityEngine;
 public class MissileScript : MonoBehaviour
 { 
     public bool IsMovePlayer;
+    int count = 1;
+    public bool isDead;
 
     // Start is called before the first frame update
     void Start()
     {
         IsMovePlayer = false;
+        isDead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (IsMovePlayer == true)
-        {
-            //右方向に移動
-            transform.position += transform.right * 2.0f;
-            /*
-            if (Direction == "Right")
-            {
-                rb.transform.position += new Vector3(1.0f, 0.0f, 0.0f);
-            }
-            if (Direction == "Down")
-            {
-                rb.transform.position += new Vector3(0.0f, -1.0f, 0.0f);
-            }
-            if (Direction == "Left")
-            {
-                rb.transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
-            }
-            if (Direction == "Top")
-            {
-                rb.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
-            }
-            */
-        }
-        IsMovePlayer = false;
+        //if (IsMovePlayer == true)
+        //{
+        //    //右方向に移動
+        //    transform.position += transform.right * 2.0f;
+        //    /*
+        //    if (Direction == "Right")
+        //    {
+        //        rb.transform.position += new Vector3(1.0f, 0.0f, 0.0f);
+        //    }
+        //    if (Direction == "Down")
+        //    {
+        //        rb.transform.position += new Vector3(0.0f, -1.0f, 0.0f);
+        //    }
+        //    if (Direction == "Left")
+        //    {
+        //        rb.transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
+        //    }
+        //    if (Direction == "Top")
+        //    {
+        //        rb.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+        //    }
+        //    */
+        //}
+
+        
+    }
+    public void Acttion()
+    {
+        if (count == 0) transform.position += transform.right * 1.0f;
+        else if (count != 0)
+            count = 0;
     }
     /*
     void ChangeSprite()
@@ -79,6 +89,26 @@ public class MissileScript : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Laser"))
+        {
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Missile"))
+        {
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("PlayerAttack"))
+        {
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("REnemy"))
         {
             Destroy(gameObject);
         }
