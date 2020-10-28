@@ -13,6 +13,9 @@ public class PlayerContlloer : MonoBehaviour
     //    Vector3 MOVEY = new Vector3(0, 0.64f, 0); // y軸方向に１マス移動するときの距離
     public GameObject GameManager;
     public GameState PlayerState;
+    public GameObject mane;
+    GameObject GameManager1;
+    Gamemanager1 script;
     public float speed = 1f;     // 移動速度
     //Vector3 target;      // 入力受付時、移動後の位置を算出して保存 
     //Vector3 prevPos;     // 何らかの理由で移動できなかった場合、元の位置に戻すため移動前の位置を保存
@@ -46,6 +49,9 @@ public class PlayerContlloer : MonoBehaviour
         stock2 = GameObject.Find("stock2").GetComponent<Image>();
         stock3 = GameObject.Find("stock3").GetComponent<Image>();
 
+        mane = GameObject.Find("GameManager");
+        GameManager1 = GameObject.Find("GameManager");
+        script = GameManager1.GetComponent<Gamemanager1>();
     }
 
     // Update is called once per frame
@@ -57,9 +63,14 @@ public class PlayerContlloer : MonoBehaviour
         //{
         //    SetTargetPosition();
         //}
+        
         Move();
         Attack();
         Death();
+        int turn = script.turn;
+
+        if(turn <= 0)
+            Destroy(this.gameObject);
     }
 
     // ② 入力に応じて移動後の位置を算出
@@ -104,9 +115,9 @@ public class PlayerContlloer : MonoBehaviour
     void Move()
     {
         GameManager = GameObject.FindGameObjectWithTag("GameManager");
-        PlayerState = GameManager.GetComponent<Gamemanager>().CurrentGameState;
+        PlayerState = GameManager.GetComponent<Gamemanager1>().CurrentGameState;
         //Debug.Log(PlayerState);
-
+        if (Time.timeScale != 0)
         if (PlayerState == GameState.KeyInput)
         {
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
@@ -114,7 +125,7 @@ public class PlayerContlloer : MonoBehaviour
                 if (transform.position.x != 6)
                 {
                     transform.position += transform.right * 1.0f;
-                    GameManager.GetComponent<Gamemanager>().SetCurrentState(GameState.PlayerTurn);
+                    GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
                     //UpdatePlayerPossision(velocity.x, velocity.y);
                 }
 
@@ -124,7 +135,7 @@ public class PlayerContlloer : MonoBehaviour
                 if (transform.position.x != 1)
                 {
                     transform.position += transform.right * -1.0f;
-                    GameManager.GetComponent<Gamemanager>().SetCurrentState(GameState.PlayerTurn);
+                    GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
                     //UpdatePlayerPossision(velocity.x, velocity.y);
                 }
 
@@ -134,7 +145,7 @@ public class PlayerContlloer : MonoBehaviour
                 if (transform.position.y != 6)
                 {
                     transform.position += transform.up * 1.0f;
-                    GameManager.GetComponent<Gamemanager>().SetCurrentState(GameState.PlayerTurn);
+                    GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
                     // UpdatePlayerPossision(velocity.x, velocity.y);
                 }
 
@@ -144,7 +155,7 @@ public class PlayerContlloer : MonoBehaviour
                 if (transform.position.y != 1)
                 {
                     transform.position += transform.up * -1.0f;
-                    GameManager.GetComponent<Gamemanager>().SetCurrentState(GameState.PlayerTurn);
+                    GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
                     // UpdatePlayerPossision(velocity.x, velocity.y);
                 }
 
@@ -160,7 +171,8 @@ public class PlayerContlloer : MonoBehaviour
     void Attack()
     {
         GameManager = GameObject.FindGameObjectWithTag("GameManager");
-        PlayerState = GameManager.GetComponent<Gamemanager>().CurrentGameState;
+        PlayerState = GameManager.GetComponent<Gamemanager1>().CurrentGameState;
+        
         if (PlayerState == GameState.KeyInput)
 
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown("joystick button 1"))
@@ -188,7 +200,7 @@ public class PlayerContlloer : MonoBehaviour
             var obj = Instantiate(prefab, transform.position + dir * 1.0f, Quaternion.identity);
             obj.transform.right = dir;
             activeWeapon = obj.gameObject;
-                GameManager.GetComponent<Gamemanager>().SetCurrentState(GameState.PlayerTurn);
+                GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
 
             }
     }
@@ -198,8 +210,10 @@ public class PlayerContlloer : MonoBehaviour
         //キャパオーバーした時
         if (balletList.Count > 3)
         {
+           
+            Destroy(mane);
             Destroy(this.gameObject);
-            FadeManager.FadeOut("End");
+            FadeManager.FadeOut("GameOver");
         }
     }
     private Vector3 GetDirection(string dir)
@@ -287,6 +301,8 @@ public class PlayerContlloer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy")|| other.gameObject.CompareTag("REnemy"))
         {
+            Destroy(mane);
+
             Destroy(gameObject);
         }
         if (other.gameObject == activeWeapon) return;

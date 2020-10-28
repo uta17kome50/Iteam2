@@ -31,6 +31,7 @@ public class PauseManu : MonoBehaviour
     void Update()
     {
         ManuSelect();
+
     }
     void ManuSelect()
     {
@@ -41,7 +42,7 @@ public class PauseManu : MonoBehaviour
 
 
 
-            Time.timeScale = 1f;
+            Time.timeScale = 0f;
             Panel.SetActive(true);
             Exit.gameObject.SetActive(true);
             Title.gameObject.SetActive(true);
