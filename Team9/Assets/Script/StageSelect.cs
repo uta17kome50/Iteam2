@@ -154,6 +154,7 @@ public class StageSelect : MonoBehaviour
         if (cntStage == 1)
         {
             Debug.Log("1");
+            FadeManager.FadeOut("stage1");
         }
         if (cntStage == 2)
         {

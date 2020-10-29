@@ -16,7 +16,9 @@ public class PauseManu : MonoBehaviour
     [SerializeField]
     private Button ReStart;
 
-   
+    [SerializeField]
+    //Scene スクリプト取得
+    private SceneM gameManager;
     //現在セーブ中か？
     public static bool pausing;
 
@@ -24,7 +26,9 @@ public class PauseManu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //読み込む
+        gameManager = GameObject.Find("GameCountManager").GetComponent<SceneM>();
+        gameManager = gameManager.GetComponent<SceneM>();
     }
 
     // Update is called once per frame
