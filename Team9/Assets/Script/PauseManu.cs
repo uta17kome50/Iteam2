@@ -40,8 +40,6 @@ public class PauseManu : MonoBehaviour
         {
             pausing = true;
 
-
-
             Time.timeScale = 0f;
             Panel.SetActive(true);
             Exit.gameObject.SetActive(true);
