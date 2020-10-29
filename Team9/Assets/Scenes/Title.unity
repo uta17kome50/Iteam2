@@ -475,6 +475,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PushButtonCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3416190431944924388, guid: 23dc653044dcd4647a3f4c95b6d4153b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3416190431944924389, guid: 23dc653044dcd4647a3f4c95b6d4153b,
         type: 3}
       propertyPath: m_LocalPosition.x
