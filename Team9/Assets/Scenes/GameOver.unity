@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5726821621156890090, guid: 1480f3e3035283448bd415cff4800100,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u3082\u3046\u4E00\u5EA6\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 5726821622311637776, guid: 1480f3e3035283448bd415cff4800100,
         type: 3}
       propertyPath: m_LocalPosition.x
