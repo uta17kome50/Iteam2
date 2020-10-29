@@ -1,27 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ManuSelect : MonoBehaviour
+public class ClearSelect : MonoBehaviour
 {
     [SerializeField]
-    private Button Exit;
+    private GameObject Button1;
+    [SerializeField]
+    private GameObject Button2;
+    [SerializeField]
+    private GameObject Button3;
 
     [SerializeField]
-    private Button Title;
-
-    [SerializeField]
-    private Button ReStart;
-    [SerializeField]
-    private GameObject Panel;
-
+    //Scene スクリプト取得
+    private SceneM gameManager;
     // Start is called before the first frame update
     void Start()
     {
-
-      
+        //読み込む
+        gameManager = GameObject.Find("GameCountManager").GetComponent<SceneM>();
+        gameManager = gameManager.GetComponent<SceneM>();
     }
     void OnEnable()
     {
@@ -29,12 +29,12 @@ public class ManuSelect : MonoBehaviour
         Selectable sel = GetComponent<Selectable>();
         sel.Select();
     }
-
     // Update is called once per frame
     void Update()
     {
-
+        
     }
+
     public void OnClick()
     {
         //名前を取得して分岐
@@ -60,36 +60,39 @@ public class ManuSelect : MonoBehaviour
         Debug.Log("終了");
         Application.Quit();
         //Quit();
-        Exit.gameObject.SetActive(false);
-        Title.gameObject.SetActive(false);
-        ReStart.gameObject.SetActive(false);
-        Panel.gameObject.SetActive(false);
+        Button1.gameObject.SetActive(false);
+
+        Button2.gameObject.SetActive(false);
+        Button3.gameObject.SetActive(false);
     }
-    
+
     public void TitleButton()
     {
-        Time.timeScale = 1f;
-        PauseManu.pausing = false;
-        GameManagerScene.isTitle = true;
+
+        FadeManager.FadeOut("Title");
         Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
-        Exit.gameObject.SetActive(false);
-        Title.gameObject.SetActive(false);
-        ReStart.gameObject.SetActive(false);
-        Panel.gameObject.SetActive(false);
-        
+        Button1.gameObject.SetActive(false);
+        Button2.gameObject.SetActive(false);
+        Button3.gameObject.SetActive(false);
+
     }
 
     public void Restart()
     {
-        Time.timeScale = 1f;
-        PauseManu.pausing = false;
-        GameManagerScene.isReTurn = true;
+        if (gameManager.currentStageNum == 21)
+        {
+            FadeManager.FadeOut("Title");
+        }
+        else
+        {
+            FadeManager.FadeOut("stage" + gameManager.currentStageNum);
+
+        }
         Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
-        Exit.gameObject.SetActive(false);
-        Title.gameObject.SetActive(false);
-        ReStart.gameObject.SetActive(false);
-        Panel.gameObject.SetActive(false);
-      
+        Button1.gameObject.SetActive(false);
+
+        Button2.gameObject.SetActive(false);
+        Button3.gameObject.SetActive(false);
+
     }
 }
-

@@ -20,7 +20,7 @@ public class GameOver : MonoBehaviour
 
             Application.Quit();
         }
-        Scene();
+        
     }
 
     void Scene()
