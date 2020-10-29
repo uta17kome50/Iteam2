@@ -56,8 +56,8 @@ public class StageSelect : MonoBehaviour
 
             if (rightMoveFlag == true)
             {
-                cntMove -= 40;
-                cntnumber += 40;
+                cntMove -= 10;
+                cntnumber += 10;
                 if (cntnumber == 400)
                 {
                     rightMoveFlag = false;
@@ -67,8 +67,8 @@ public class StageSelect : MonoBehaviour
 
             if (leftMoveFlag == true)
             {
-                cntMove += 40;
-                cntnumber += 40;
+                cntMove += 10;
+                cntnumber += 10;
                 if (cntnumber == 400)
                 {
                     leftMoveFlag = false;
@@ -78,7 +78,7 @@ public class StageSelect : MonoBehaviour
 
             //myTransform.position =pos;
             Select();
-            if (cntStage != stageMax && Input.GetAxis("Horizontal") > 0.1f && rightMoveFlag == false && leftMoveFlag == false)
+            if (cntStage != stageMax && Input.GetAxis("Horizontal") > 0.8f && rightMoveFlag == false && leftMoveFlag == false)
             {
                 targetAnimator.SetTrigger("Right");
             
@@ -94,7 +94,7 @@ public class StageSelect : MonoBehaviour
                 }
             }
 
-            if (cntStage != stageMin && Input.GetAxis("Horizontal") < -0.1f && rightMoveFlag == false && leftMoveFlag == false)
+            if (cntStage != stageMin && Input.GetAxis("Horizontal") < -0.8f && rightMoveFlag == false && leftMoveFlag == false)
             {
                 targetAnimatorLeft.SetTrigger("Right");
              
