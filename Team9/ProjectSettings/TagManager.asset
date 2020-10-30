@@ -12,6 +12,7 @@ TagManager:
   - REnemy
   - PlayerAttack
   - goal
+  - SceneManager
   layers:
   - Default
   - TransparentFX
