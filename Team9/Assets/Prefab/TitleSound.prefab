@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6804738741403361595
+--- !u!1 &2652558137664531580
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4240179979810004220}
-  - component: {fileID: 5497067489325762314}
-  - component: {fileID: 4906192601536218095}
+  - component: {fileID: 2652558137664531577}
+  - component: {fileID: 2652558137664531578}
+  - component: {fileID: 2652558137664531579}
   m_Layer: 0
   m_Name: TitleSound
   m_TagString: TitleSound
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4240179979810004220
+--- !u!4 &2652558137664531577
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6804738741403361595}
+  m_GameObject: {fileID: 2652558137664531580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,17 +32,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &5497067489325762314
+--- !u!82 &2652558137664531578
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6804738741403361595}
+  m_GameObject: {fileID: 2652558137664531580}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f8dffb5bd9cd69d46b895906749a0a2f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3f31d5758d261ba439f6a3f8b24c63e9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -128,15 +128,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4906192601536218095
+--- !u!114 &2652558137664531579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6804738741403361595}
+  m_GameObject: {fileID: 2652558137664531580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ece020f09c1aec4086111d003e6a900, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a4056f91a7d852478e5fc21033b58c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
