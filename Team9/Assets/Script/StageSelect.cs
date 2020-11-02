@@ -155,6 +155,7 @@ public class StageSelect : MonoBehaviour
         {
             Debug.Log("1");
             FadeManager.FadeOut("stage1");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 2)
         {

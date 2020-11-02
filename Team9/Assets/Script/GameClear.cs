@@ -64,6 +64,7 @@ public class GameClear : MonoBehaviour
             {
                 FadeManager.FadeOut("MasterTitle");
                 Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
+                Destroy(GameObject.FindGameObjectWithTag("StageSound"));
 
             }
         }

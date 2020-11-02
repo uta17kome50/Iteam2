@@ -60,6 +60,7 @@ public class ClearSelect : MonoBehaviour
         Debug.Log("終了");
         Application.Quit();
         //Quit();
+
         Button1.gameObject.SetActive(false);
 
         Button2.gameObject.SetActive(false);
@@ -71,6 +72,7 @@ public class ClearSelect : MonoBehaviour
 
         FadeManager.FadeOut("Title");
         Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
+        Destroy(GameObject.FindGameObjectWithTag("StageSound"));
         Button1.gameObject.SetActive(false);
         Button2.gameObject.SetActive(false);
         Button3.gameObject.SetActive(false);
@@ -89,6 +91,7 @@ public class ClearSelect : MonoBehaviour
 
         }
         Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
+        Destroy(GameObject.FindGameObjectWithTag("StageSound"));
         Button1.gameObject.SetActive(false);
 
         Button2.gameObject.SetActive(false);
