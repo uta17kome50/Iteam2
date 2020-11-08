@@ -20,17 +20,19 @@ public class RotationEnemyScript : MonoBehaviour
     public string EnemyName;
     public string Direction;
     public bool IsMovePlayer;
+    bool isAttack;
     //public int CountLaser;
 
     // Start is called before the first frame update
     void Start()
     {
         //Player = GameObject.Find("Player");
+        ChangeSprite();
         IsMovePlayer = false;
         MainSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
-        
-        
+        isAttack = false;
+
 
         if (EnemyName == "Laser")
         {
@@ -45,9 +47,86 @@ public class RotationEnemyScript : MonoBehaviour
     // Update is called once per frame
     public void MoveEnemy()
     {
-
         player = GameObject.Find("Player(Clone)");
-        if (Direction == "Right")
+        isAttack = false;
+        switch (Direction)
+        {
+            case "Right":
+                if (rb.transform.position.x < player.transform.position.x &&
+                    rb.transform.position.y == player.transform.position.y)
+                {
+                    if (EnemyName == "Laser")
+                    {
+                        var obj = Instantiate(LaserPrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
+                        obj.transform.right = transform.right;
+                    }
+                    if (EnemyName == "Missile")
+                    {
+
+                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
+                        obj.transform.right = transform.right;
+                    }
+                    isAttack = true;
+                }
+                break;
+            case "Down":
+                if (rb.transform.position.x == player.transform.position.x &&
+                    rb.transform.position.y > player.transform.position.y)
+                {
+                    if (EnemyName == "Laser")
+                    {
+                        var obj = Instantiate(LaserPrefab, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
+                        obj.transform.right = transform.right;
+                    }
+                    if (EnemyName == "Missile")
+                    {
+                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
+                        obj.transform.right = transform.right;
+                    }
+                    isAttack = true;
+                }
+                break;
+            case "Left":
+                if (rb.transform.position.x > player.transform.position.x &&
+                    rb.transform.position.y == player.transform.position.y)
+                {
+                    if (EnemyName == "Laser")
+                    {
+                        var obj = Instantiate(LaserPrefab, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
+                        obj.transform.right = transform.right;
+                    }
+                    if (EnemyName == "Missile")
+                    {
+
+                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
+                        obj.transform.right = transform.right;
+                    }
+                    isAttack = true;
+                }
+                break;
+            case "Up":
+                if (rb.transform.position.x == player.transform.position.x &&
+                    rb.transform.position.y < player.transform.position.y)
+                {
+                    if (EnemyName == "Laser")
+                    {
+                        var obj = Instantiate(LaserPrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
+                        obj.transform.right = transform.right;
+                    }
+                    if (EnemyName == "Missile")
+                    {
+                        var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
+                        obj.transform.right = transform.right;
+                    }
+                    isAttack = true;
+                }
+                break;
+        }
+
+        if (isAttack == false)
+        {
+
+            if (Direction == "Right")
             {
                 Direction = "Down";
             }
@@ -64,77 +143,7 @@ public class RotationEnemyScript : MonoBehaviour
                 Direction = "Right";
             }
             ChangeSprite();
-
-            switch (Direction)
-            {
-                case "Right":
-                    if (rb.transform.position.x < player.transform.position.x &&
-                        rb.transform.position.y == player.transform.position.y)
-                    {
-                        if (EnemyName == "Laser")
-                        {
-                                var obj = Instantiate(LaserPrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
-                                obj.transform.right = transform.right;
-                        }
-                        if (EnemyName == "Missile")
-                        {
-
-                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
-                            obj.transform.right = transform.right;
-                        }
-                    }
-                    break;
-                case "Down":
-                    if (rb.transform.position.x == player.transform.position.x &&
-                        rb.transform.position.y > player.transform.position.y)
-                    {
-                        if (EnemyName == "Laser")
-                        {       
-                                var obj = Instantiate(LaserPrefab, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
-                                obj.transform.right = transform.right;
-                        }
-                        if (EnemyName == "Missile")
-                        {
-                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, -1.0f, 0.0f), Quaternion.identity);
-                            obj.transform.right = transform.right;
-                        }
-                    }
-                    break;
-                case "Left":
-                    if (rb.transform.position.x > player.transform.position.x &&
-                        rb.transform.position.y == player.transform.position.y)
-                    {
-                        if (EnemyName == "Laser")
-                        {
-                                var obj = Instantiate(LaserPrefab, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
-                                obj.transform.right = transform.right;
-                        }
-                        if (EnemyName == "Missile")
-                        {
-
-                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(-1.0f, 0.0f, 0.0f), Quaternion.identity);
-                            obj.transform.right = transform.right;
-                        }
-                    }
-                    break;
-                case "Up":
-                    if (rb.transform.position.x == player.transform.position.x &&
-                        rb.transform.position.y < player.transform.position.y)
-                    {
-                        if (EnemyName == "Laser")
-                        {
-                                var obj = Instantiate(LaserPrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
-                                obj.transform.right = transform.right;
-                        }
-                        if (EnemyName == "Missile")
-                        {
-                            var obj = Instantiate(MissilePrefab, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.identity);
-                            obj.transform.right = transform.right;
-                        }
-                    }
-                    break;
-            }
-        
+        }
     }
 
     void ChangeSprite()
