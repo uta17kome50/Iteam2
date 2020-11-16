@@ -54,7 +54,7 @@ public class EnemyScript : MonoBehaviour
                     {
                         if (CountLaser == 3)
                         {
-                            var obj = Instantiate(LaserPrefab, transform.position + new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+                            var obj = Instantiate(LaserPrefab, transform.position + new Vector3(1.0f, 0.0f, 0.0f), Quaternion.identity);
                             obj.transform.right = transform.right;
                             CountLaser = 0;
                         }

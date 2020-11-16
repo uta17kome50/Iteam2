@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22877a3b640ec0349bfe89cf50f8264b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LaserEnemy: {fileID: 21300000, guid: 93c238cf5e199a14bba6fd57da30a572, type: 3}
-  MissileEnemy: {fileID: 21300000, guid: 003ae308822794242b4caa10b4dde84f, type: 3}
+  LaserEnemy: {fileID: 21300000, guid: a25b3796d89141144804cab188bf6497, type: 3}
+  MissileEnemy: {fileID: 21300000, guid: 0231fedf33b756c44b28d9881393b852, type: 3}
   LaserPrefab: {fileID: 384461889459516494, guid: 2ad07abe24d39a3409392cb7a22fe988,
     type: 3}
   MissilePrefab: {fileID: 7369055478494660993, guid: 2b7236666b27f3c439b68e8d1b703f61,

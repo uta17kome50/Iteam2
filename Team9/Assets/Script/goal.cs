@@ -29,7 +29,7 @@ public class goal : MonoBehaviour
             Destroy(player);
 
 
-            FadeManager.FadeOut("End");
+            FadeManager.FadeOut("Stage2");
 
         }
     }

@@ -33,7 +33,7 @@ public class Title : MonoBehaviour
         if(Input.GetKeyDown("joystick button 7"))
         {
             
-            FadeManager.FadeOut("Select");
+            FadeManager.FadeOut("Stage1");
         }
     }
 }

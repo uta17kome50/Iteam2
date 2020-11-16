@@ -26,7 +26,7 @@ public class Gamemanager1 : MonoBehaviour
     public GameObject[] RotationEnemyObj;
     public GameObject[] WeaponObj;
     public GameState CurrentGameState; //現在のゲーム状態
-    float TurnDelay = 0.40f; //移動ごとの間隔
+    float TurnDelay = 0.20f; //移動ごとの間隔
 
     public GameObject Goal;
     //public script goalscript;
@@ -148,8 +148,11 @@ public class Gamemanager1 : MonoBehaviour
         //EnemyObjの数だけEnemyにアタッチしている移動処理を実行
         for (int x = 0; x < WeaponObj.Length; ++x)
         {
+            //if (WeaponObj[x] == null)
+            //    break;
             yield return new WaitForSeconds(TurnDelay);
-            WeaponObj[x].GetComponent<MissileScript>().Acttion();
+            if (WeaponObj[x] != null)
+                WeaponObj[x].GetComponent<MissileScript>().Acttion();
         }
 
         SetCurrentState(GameState.TurnEnd);

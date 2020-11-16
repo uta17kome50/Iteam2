@@ -72,6 +72,8 @@ public class ManuSelect : MonoBehaviour
         PauseManu.pausing = false;
         GameManagerScene.isTitle = true;
         Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
+        Destroy(GameObject.FindGameObjectWithTag("GameManager"));
+
         Destroy(GameObject.FindGameObjectWithTag("StageSound"));
         Exit.gameObject.SetActive(false);
         Title.gameObject.SetActive(false);
@@ -86,6 +88,8 @@ public class ManuSelect : MonoBehaviour
         PauseManu.pausing = false;
         GameManagerScene.isReTurn = true;
         Destroy(GameObject.FindGameObjectWithTag("SceneManager"));
+        Destroy(GameObject.FindGameObjectWithTag("GameManager"));
+
         Destroy(GameObject.FindGameObjectWithTag("StageSound"));
         Exit.gameObject.SetActive(false);
         Title.gameObject.SetActive(false);

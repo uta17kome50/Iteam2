@@ -51,9 +51,9 @@ public class CSVReader : MonoBehaviour
         //csvIntDatas[0, 0] = int.Parse(csvDatas[0][0]);
         //Debug.Log(csvIntDatas[0, 0]);
         
-        for(int i = 0; i <= 8; i++)
+        for(int i = 0; i <= 7; i++)
         {
-            for(int j = 0; j <= 8; j++)
+            for(int j = 0; j <= 7; j++)
             {
                 csvIntDatas[i,j] = int.Parse(csvDatas[i][j]);
                 //Debug.Log(csvIntDatas[i, j]);

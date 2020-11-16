@@ -154,84 +154,122 @@ public class StageSelect : MonoBehaviour
         if (cntStage == 1)
         {
             Debug.Log("1");
-            FadeManager.FadeOut("stage1");
+            FadeManager.FadeOut("Stage1");
             Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 2)
         {
             Debug.Log("2");
+            FadeManager.FadeOut("Stage2");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 3)
         {
             Debug.Log("3");
+            FadeManager.FadeOut("Stage3");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 4)
         {
             Debug.Log("4");
+            FadeManager.FadeOut("Stage4");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 5)
         {
             Debug.Log("5");
+            FadeManager.FadeOut("Stage5");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 6)
         {
             Debug.Log("6");
+            FadeManager.FadeOut("Stage6");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 7)
         {
             Debug.Log("7");
+            FadeManager.FadeOut("Stage7");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 8)
         {
             Debug.Log("8");
+            FadeManager.FadeOut("Stage8");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 9)
         {
             Debug.Log("9");
+            FadeManager.FadeOut("Stage9");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 10)
         {
             Debug.Log("10");
+            FadeManager.FadeOut("Stage10");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 11)
         {
             Debug.Log("11");
+            FadeManager.FadeOut("Stage11");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 12)
         {
             Debug.Log("12");
+            FadeManager.FadeOut("Stage12");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 13)
         {
             Debug.Log("13");
+            FadeManager.FadeOut("Stage13");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 14)
         {
             Debug.Log("14");
+            FadeManager.FadeOut("Stage14");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 15)
         {
             Debug.Log("15");
+            FadeManager.FadeOut("Stage15");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 16)
         {
             Debug.Log("16");
+            FadeManager.FadeOut("Stage16");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 17)
         {
             Debug.Log("17");
+            FadeManager.FadeOut("Stage17");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 18)
         {
             Debug.Log("18");
+            FadeManager.FadeOut("Stage18");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 19)
         {
             Debug.Log("19");
+            FadeManager.FadeOut("Stage19");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         if (cntStage == 20)
         {
             Debug.Log("20");
+            FadeManager.FadeOut("Stage20");
+            Destroy(GameObject.FindGameObjectWithTag("TitleSound"));
         }
         //LoadingInstance = GameObject.Instantiate(LoadingPrefab) as GameObject;
         //SceneManager.LoadScene("GameMain");

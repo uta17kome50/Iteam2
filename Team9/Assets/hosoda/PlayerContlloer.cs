@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 using UnityEngine.UI;//追加
@@ -21,19 +22,20 @@ public class PlayerContlloer : MonoBehaviour
     //Vector3 prevPos;     // 何らかの理由で移動できなかった場合、元の位置に戻すため移動前の位置を保存
     Animator animator;   // アニメーション
     Rigidbody2D rb;
+    private List<GameObject> weaponList = new List<GameObject>();
     //Stack<string> StackBalletDitection = new Stack<string>();//弾の方向を格納
     //Stack<string> StackBalletType = new Stack<string>();//弾の種類を格納
     struct Ballet
     {
         public Vector3 Direction;
         public string Type;
-        public Ballet (Vector3 dir,string btype)
+        public Ballet(Vector3 dir, string btype)
         {
             Direction = dir;
             Type = btype;
-        } 
+        }
     }
-   List<Ballet>  balletList = new List<Ballet>();
+    List<Ballet> balletList = new List<Ballet>();
     Image stock1, stock2, stock3;
     private GameObject activeWeapon;
 
@@ -63,13 +65,13 @@ public class PlayerContlloer : MonoBehaviour
         //{
         //    SetTargetPosition();
         //}
-        
+
         Move();
         Attack();
         Death();
         int turn = script.turn;
 
-        if(turn <= 0)
+        if (turn <= 0)
             Destroy(this.gameObject);
     }
 
@@ -114,55 +116,55 @@ public class PlayerContlloer : MonoBehaviour
     // ③ 目的地へ移動する
     void Move()
     {
-        GameManager = GameObject.FindGameObjectWithTag("GameManager");
-        PlayerState = GameManager.GetComponent<Gamemanager1>().CurrentGameState;
-        //Debug.Log(PlayerState);
-        if (Time.timeScale != 0)
-        if (PlayerState == GameState.KeyInput)
-        {
-            if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
-            {
-                if (transform.position.x != 6)
-                {
-                    transform.position += transform.right * 1.0f;
-                    GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
-                    //UpdatePlayerPossision(velocity.x, velocity.y);
-                }
+        //GameManager = GameObject.FindGameObjectWithTag("GameManager");
+        //PlayerState = GameManager.GetComponent<Gamemanager1>().CurrentGameState;
+        ////Debug.Log(PlayerState);
+        //if (Time.timeScale != 0)
+        //if (PlayerState == GameState.KeyInput)
+        //{
+        //    if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
+        //    {
+        //        if (transform.position.x != 6)
+        //        {
+        //            transform.position += transform.right * 1.0f;
+        //            GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
+        //            //UpdatePlayerPossision(velocity.x, velocity.y);
+        //        }
 
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
-            {
-                if (transform.position.x != 1)
-                {
-                    transform.position += transform.right * -1.0f;
-                    GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
-                    //UpdatePlayerPossision(velocity.x, velocity.y);
-                }
+        //    }
+        //    else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
+        //    {
+        //        if (transform.position.x != 1)
+        //        {
+        //            transform.position += transform.right * -1.0f;
+        //            GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
+        //            //UpdatePlayerPossision(velocity.x, velocity.y);
+        //        }
 
-            }
-            else if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("Vertical") > 0)
-            {
-                if (transform.position.y != 6)
-                {
-                    transform.position += transform.up * 1.0f;
-                    GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
-                    // UpdatePlayerPossision(velocity.x, velocity.y);
-                }
+        //    }
+        //    else if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("Vertical") > 0)
+        //    {
+        //        if (transform.position.y != 6)
+        //        {
+        //            transform.position += transform.up * 1.0f;
+        //            GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
+        //            // UpdatePlayerPossision(velocity.x, velocity.y);
+        //        }
 
-            }
-            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("Vertical") < 0)
-            {
-                if (transform.position.y != 1)
-                {
-                    transform.position += transform.up * -1.0f;
-                    GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
-                    // UpdatePlayerPossision(velocity.x, velocity.y);
-                }
+        //    }
+        //    else if (Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("Vertical") < 0)
+        //    {
+        //        if (transform.position.y != 1)
+        //        {
+        //            transform.position += transform.up * -1.0f;
+        //            GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
+        //            // UpdatePlayerPossision(velocity.x, velocity.y);
+        //        }
 
-            }
+        //    }
 
 
-        }
+
 
         // rb.velocity = velocity;
         //transform.position = Vector3.MoveTowards(transform.position, target, step * Time.deltaTime);
@@ -172,34 +174,34 @@ public class PlayerContlloer : MonoBehaviour
     {
         GameManager = GameObject.FindGameObjectWithTag("GameManager");
         PlayerState = GameManager.GetComponent<Gamemanager1>().CurrentGameState;
-        
+
         if (PlayerState == GameState.KeyInput)
 
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown("joystick button 1"))
-        {
-            if (balletList.Count <= 0)
             {
-                return;
-            }
-            RemoveStockUI();
-            var dir = balletList[0].Direction;
-            var type = balletList[0].Type;
-            Debug.Log(dir + " >> " + type);
-            balletList.RemoveAt(0);
-            GameObject prefab = null;
-            switch (type)
-            {
-                case "Laser":
-                    prefab = LaserPrefab.gameObject;
-                    break;
-                case "Missile":
-                    prefab = MissilePrefab.gameObject;
-                    break;
-            }
+                if (balletList.Count <= 0)
+                {
+                    return;
+                }
+                RemoveStockUI();
+                var dir = balletList[0].Direction;
+                var type = balletList[0].Type;
+                Debug.Log(dir + " >> " + type);
+                balletList.RemoveAt(0);
+                GameObject prefab = null;
+                switch (type)
+                {
+                    case "Laser":
+                        prefab = LaserPrefab.gameObject;
+                        break;
+                    case "Missile":
+                        prefab = MissilePrefab.gameObject;
+                        break;
+                }
 
-            var obj = Instantiate(prefab, transform.position + dir * 1.0f, Quaternion.identity);
-            obj.transform.right = dir;
-            activeWeapon = obj.gameObject;
+                var obj = Instantiate(prefab, transform.position + dir * 1.0f, Quaternion.identity);
+                obj.transform.right = dir;
+                activeWeapon = obj.gameObject;
                 GameManager.GetComponent<Gamemanager1>().SetCurrentState(GameState.PlayerTurn);
 
             }
@@ -210,7 +212,7 @@ public class PlayerContlloer : MonoBehaviour
         //キャパオーバーした時
         if (balletList.Count > 3)
         {
-           
+
             Destroy(mane);
             Destroy(this.gameObject);
             FadeManager.FadeOut("GameOver");
@@ -248,58 +250,53 @@ public class PlayerContlloer : MonoBehaviour
         return null;
     }
     //ストックUIの変更
-    private void AddStockUI(Sprite sprite)
+    private void AddStockUI(GameObject prefab)
     {
-        if (stock1.color.a <= 0.0f)
+        weaponList.Add(Instantiate(prefab, Vector3.one * 1000, Quaternion.identity));
+        if (0 < weaponList.Count)
         {
-
-            stock1.sprite = sprite;
-
-            var color = stock1.color;
-            color.a = 1;
-            stock1.color = color;
+            weaponList[0].transform.position = stock1.transform.position - Camera.main.transform.forward;
         }
-        else if (stock2.color.a <= 0.0f)
+        if (1 < weaponList.Count)
         {
-            stock2.sprite = sprite;
-
-            var color = stock2.color;
-            color.a = 1;
-            stock2.color = color;
+            weaponList[1].transform.position = stock2.transform.position - Camera.main.transform.forward/*rectTransform.anchoredPosition*/;
         }
-        else if (stock3.color.a <= 0.0f)
+        if (2 < weaponList.Count)
         {
-            stock3.sprite = sprite;
-
-            var color = stock3.color;
-            color.a = 1;
-            stock3.color = color;
+            weaponList[2].transform.position = stock3.transform.position - Camera.main.transform.forward/*rectTransform.anchoredPosition*/;
         }
+        Debug.Log("stock1"+stock1.transform.position+"stock2"+stock2.transform.position +"stock3"+ stock3.transform.position);
+
     }
     private void RemoveStockUI()
     {
-        Debug.Log("before " + stock1.sprite + "/" + stock2.sprite + "/" + stock3.sprite);
-        stock1.sprite = stock2.sprite;
-        stock1.color = stock2.color;
-        stock2.sprite = stock3.sprite;
-        stock2.color = stock3.color;
-        stock3.sprite = null;
-        stock3.color = new Color(1, 1, 1, 0);
-        Debug.Log("after " + stock1.sprite + "/" + stock2.sprite + "/" + stock3.sprite);
+
+        if (weaponList.Count <= 0) return;
+        for (int i = weaponList.Count - 1; 0 <= i; i--)
+        {
+            if (0 <= i - 1)
+            {
+                Debug.Log((i) + ": " + weaponList[i].transform.position + " / " + (i-1)+ ": " + weaponList[i-1].transform.position);
+                weaponList[i].transform.position = weaponList[i-1].transform.position;
+            }
+        }
+        Destroy(weaponList[0].gameObject);
+        weaponList.RemoveAt(0);
+
 
     }
-    private Sprite GetWeaponSprite(string name, string dir)
+    private GameObject GetWeaponPrefab(string name, string dir)
     {
         var s = name.ToUpper() + "_" + dir.ToUpper();
         Debug.Log(s);
-        return Resources.Load<Sprite>(name.ToUpper() + "_" + dir.ToUpper());
+        return Resources.Load<GameObject>("Stocks/" + name.ToUpper() + "_" + dir.ToUpper());
 
     }
 
     //弾と衝突時
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy")|| other.gameObject.CompareTag("REnemy"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("REnemy"))
         {
             Destroy(mane);
 
@@ -336,11 +333,11 @@ public class PlayerContlloer : MonoBehaviour
                 var dir = Direction(deg);
                 Debug.Log("Direction>> " + dir);
                 Debug.Log("Type>>" + other.gameObject.tag);
-                balletList.Add(new Ballet(GetDirection(dir),other.gameObject.tag));
-                var sprite = GetWeaponSprite(other.gameObject.tag, dir);
-                if (sprite != null)
+                balletList.Add(new Ballet(GetDirection(dir), other.gameObject.tag));
+                var prefab = GetWeaponPrefab(other.gameObject.tag, dir);
+                if (prefab != null)
                 {
-                    AddStockUI(sprite);
+                    AddStockUI(prefab);
                 }
 
                 break;

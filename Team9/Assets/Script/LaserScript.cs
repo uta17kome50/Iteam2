@@ -6,24 +6,29 @@ public class LaserScript : MonoBehaviour
 {
     [SerializeField, Header("速度"), Range(0, 100)]
     float laserSpeed;
+    Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //右方向に移動
-        transform.position += transform.right * laserSpeed * Time.deltaTime;
-        /*
+        //transform.position += transform.right * laserSpeed * Time.deltaTime;
+        
         var velocity = rb.velocity;
         velocity = Vector3.zero;
+        velocity = transform.right * laserSpeed; 
+        rb.velocity = velocity;
+
+        /*
         if (Direction == "Right")
         {
             //rb.transform.position += new Vector3(10.0f, 0.0f, 0.0f);
-            velocity.x = Speed;
+            
         }
         if (Direction == "Down")
         {

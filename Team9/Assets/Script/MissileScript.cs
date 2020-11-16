@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class MissileScript : MonoBehaviour
 { 
-    public bool IsMovePlayer;
     int count = 1;
-    public bool isDead;
 
     // Start is called before the first frame update
     void Start()
     {
-        IsMovePlayer = false;
-        isDead = false;
+
     }
 
     // Update is called once per frame
